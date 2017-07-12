@@ -1,0 +1,25 @@
+# IT a docker-compose file for start all palladium servises. 
+# Ports 80, 8080 and 5432 must be free
+version: '2'
+services:
+  db:
+    image: postgres
+    ports:
+      - "5432:5432"
+  api-server:
+    build: 
+      context: https://github.com/flaminestone/palladium-api.git
+    command: ["puma"]
+    volumes:
+      - .:/palladium
+    ports:
+      - "8080:8080"
+    depends_on:
+      - db
+  clientside-server:
+    build:
+      context: https://github.com/flaminestone/palladium-view.git
+    command: ["service", "nginx", "start"]
+    ports:
+      - "80:80"
+
