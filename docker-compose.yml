@@ -3,6 +3,8 @@ version: '2'
 services:
   db:
     image: postgres
+    volumes:
+        - db-volume:/data/postgres
   api-server:
     build:
       context: https://github.com/flaminestone/palladium-api.git
@@ -10,7 +12,7 @@ services:
     depends_on:
       - db
     volumes:
-      - datavolume:/palladium-api/tmp/puma/socket/
+      - data-volume:/palladium-api/tmp/puma/socket/
     tty: true
   clientside-server:
     build:
@@ -19,7 +21,8 @@ services:
     ports:
       - "80:80"
     volumes:
-      - datavolume:/tmp/puma
+      - data-volume:/tmp/puma
       - ./config.json://palladium-view/dist/config.json
 volumes:
-  datavolume: {}
+  db-volume:
+  data-volume: {}
