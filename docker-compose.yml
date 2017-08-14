@@ -25,4 +25,5 @@ services:
       - ./config.json://palladium-view/dist/config.json
 volumes:
   db-volume:
+    external: true
   data-volume: {}
