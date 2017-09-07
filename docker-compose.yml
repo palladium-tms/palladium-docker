@@ -17,13 +17,13 @@ services:
   clientside-server:
     build:
       context: https://github.com/flaminestone/palladium-view.git
+      args:
+        - config={"host":"http://0.0.0.0"}
     command: ["service", "nginx", "start"]
     ports:
       - "80:80"
     volumes:
       - data-volume:/tmp/puma
-      - ./config.json://palladium-view/dist/config.json
 volumes:
   db-volume:
-    external: true
   data-volume: {}
