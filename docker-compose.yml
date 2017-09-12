@@ -12,18 +12,24 @@ services:
     depends_on:
       - db
     volumes:
-      - data-volume:/palladium-api/tmp/puma/socket/
+      - apidata-volume:/palladium-api/tmp/puma/socket/
     tty: true
-  clientside-server:
+  clientside-build:
+    volumes:
+      - ./dist/:/palladium-view/host_dist
     build:
       context: https://github.com/flaminestone/palladium-view.git
       args:
         - config={"host":"http://0.0.0.0"}
-    command: ["service", "nginx", "start"]
+  nginx-server:
+    build:
+      context: .
+    volumes:
+      - apidata-volume:/palladium/api
+      - ./dist/:/palladium/view/
     ports:
       - "80:80"
-    volumes:
-      - data-volume:/tmp/puma
+    tty: true
 volumes:
   db-volume:
-  data-volume: {}
+  apidata-volume: {}
