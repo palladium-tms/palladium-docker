@@ -7,7 +7,7 @@ There are 4 containers:
   nginx-server: master container. It take puma socket from api-server and it will be available in http://host/api path, and take client side folder. It will be available in http://host:80 path.
 
 For update contrainer with server api:
-```docker-compose up -d --no-deps --bsuild api-server```
+```docker-compose up -d --no-deps --build api-server```
 
 For update view side
 ```docker-compose up -d --no-deps --build clientside-build```

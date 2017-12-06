@@ -8,12 +8,14 @@ services:
   api-server:
     build:
       context: https://github.com/flaminestone/palladium-api.git
-    command: ["puma"]
+    command: ["puma -e RACK_ENV=production"]
     depends_on:
       - db
     volumes:
       - apidata-volume:/palladium-api/tmp/puma/socket/
     tty: true
+    environment:
+      - RACK_ENV=production
   clientside-build:
     volumes:
       - ./dist/:/palladium-view/host_dist
