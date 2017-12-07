@@ -14,8 +14,6 @@ services:
     volumes:
       - apidata-volume:/palladium-api/tmp/puma/socket/
     tty: true
-    environment:
-      - RACK_ENV=production
   clientside-build:
     volumes:
       - ./dist/:/palladium-view/host_dist
