@@ -21,8 +21,6 @@ services:
       - ./dist/:/palladium-view/host_dist
     build:
       context: https://github.com/flaminestone/palladium-view.git
-      args:
-        - config={"host":"http://0.0.0.0"}
   nginx-server:
     build:
       context: .
