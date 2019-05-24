@@ -1,10 +1,10 @@
-# IT a docker-compose file for start all palladium servises.
-version: '2'
+# IT a docker-compose file for start all palladium services.
+version: '3'
 services:
   db:
     image: postgres
     volumes:
-        - db-volume:/data/postgres
+        - db:/var/lib/postgresql/data
   api-server:
     build:
       context: https://github.com/flaminestone/palladium-api.git
@@ -12,7 +12,7 @@ services:
     depends_on:
       - db
     volumes:
-      - apidata-volume:/palladium-api/tmp/puma/socket/
+      - apidata:/palladium-api/tmp/puma/socket/
     tty: true
     environment:
       - RACK_ENV=production
@@ -25,11 +25,11 @@ services:
     build:
       context: .
     volumes:
-      - apidata-volume:/palladium/api
+      - apidata:/palladium/api
       - ./dist/:/palladium/view/
     ports:
       - "80:80"
     tty: true
 volumes:
-  db-volume:
-  apidata-volume: {}
+  db:
+  apidata: {}
