@@ -1,10 +1,15 @@
 # IT a docker-compose file for start all palladium services.
 version: '3'
 services:
-  db:
-    image: postgres
+  nginx-server:
+    image: nginx:1.16.0
     volumes:
-        - db:/var/lib/postgresql/data
+      - apidata:/palladium/api
+      - ./dist/:/palladium/view/
+      - ./palladium.conf/:/etc/nginx/conf.d/default.conf
+    ports:
+      - "80:80"
+    tty: true
   api-server:
     build:
       context: https://github.com/flaminestone/palladium-api.git
@@ -16,20 +21,15 @@ services:
     tty: true
     environment:
       - RACK_ENV=production
-  clientside-build:
+  db:
+    image: postgres
     volumes:
-      - ./dist/:/palladium-view/host_dist
+        - db:/var/lib/postgresql/data
+  clientside-build:
     build:
       context: https://github.com/flaminestone/palladium-view.git
-  nginx-server:
-    build:
-      context: .
     volumes:
-      - apidata:/palladium/api
-      - ./dist/:/palladium/view/
-    ports:
-      - "80:80"
-    tty: true
+      - ./dist/:/palladium-view/host_dist
 volumes:
   db:
   apidata: {}
