@@ -21,6 +21,8 @@ services:
     tty: true
     environment:
       - RACK_ENV=production
+      - JWT_SECRET=
+      - JWT_ISSUER=
   db:
     image: postgres
     volumes:
