@@ -10,10 +10,12 @@ services:
     ports:
       - "80:80"
     tty: true
+    restart: always
   api-server:
     build:
       context: https://github.com/flaminestone/palladium-api.git
     command: ["bundle", "exec", "puma -C config/puma.rb"]
+    restart: always
     depends_on:
       - db
     volumes:
@@ -26,6 +28,7 @@ services:
   db:
     image: postgres
     shm_size: 1gb
+    restart: always
     volumes:
         - db:/var/lib/postgresql/data
   clientside-build:
