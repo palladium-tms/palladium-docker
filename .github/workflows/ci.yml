@@ -1,0 +1,9 @@
+name: check
+on: [push]
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v2
+    - name: Start docker-compose
+      run: docker-compose up -d
