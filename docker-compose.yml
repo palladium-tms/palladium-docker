@@ -31,6 +31,8 @@ services:
     restart: always
     volumes:
         - db:/var/lib/postgresql/data
+    environment: 
+      POSTGRES_HOST_AUTH_METHOD: "trust"
   clientside-build:
     build:
       context: https://github.com/flaminestone/palladium-view.git
