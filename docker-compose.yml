@@ -25,6 +25,7 @@ services:
       - JWT_ISSUER=
   db:
     image: postgres
+    shm_size: 1gb
     volumes:
         - db:/var/lib/postgresql/data
   clientside-build:
