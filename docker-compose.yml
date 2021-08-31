@@ -13,7 +13,7 @@ services:
   api-server:
     build:
       context: https://github.com/flaminestone/palladium-api.git
-    command: ["puma"]
+    command: ["bundle", "exec", "puma -C config/puma.rb"]
     depends_on:
       - db
     volumes:
