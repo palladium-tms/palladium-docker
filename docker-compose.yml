@@ -21,9 +21,9 @@ services:
       - apidata:/palladium-api/tmp/puma/socket/
     tty: true
     environment:
-      - RACK_ENV=production
-      - JWT_SECRET=
-      - JWT_ISSUER=
+      RACK_ENV: "production"
+      JWT_SECRET: ${JWT_SECRET}
+      JWT_ISSUER: ${JWT_ISSUER}
   db:
     image: postgres
     shm_size: 1gb
