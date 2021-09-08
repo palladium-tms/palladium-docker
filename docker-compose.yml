@@ -6,7 +6,10 @@ services:
     volumes:
       - apidata:/palladium/api
       - ./dist/:/palladium/view/
-      - ./palladium.conf/:/etc/nginx/conf.d/default.conf
+      # For local compose uncomment volume below and comment `./palladium-ssl.conf`
+      # - "./palladium.conf:/etc/nginx/conf.d/default.conf"
+      - "./palladium-ssl.conf:/etc/nginx/conf.d/default.conf"
+      - ./certs:/etc/nginx/certs
     ports:
       - "80:80"
     tty: true
