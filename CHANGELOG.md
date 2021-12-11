@@ -5,6 +5,7 @@
 ### New Features
 
 * SSL configuration is enabled by default
+* Add backup and restore scripts
 
 ### Changes
 
