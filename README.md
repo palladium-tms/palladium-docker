@@ -2,7 +2,7 @@
 
 ## Usage
 
-use "docker-compose up" in directory of project for start services
+Use `docker-compose up` in directory of project for start services
 
 There are 4 containers:
   
