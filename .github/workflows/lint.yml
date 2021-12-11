@@ -1,0 +1,11 @@
+name: lint
+on: [push]
+jobs:
+  markdownlint:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: Check markdown files using `markdownlint`
+        run: |
+          sudo npm install -g markdownlint-cli
+          markdownlint *.md
