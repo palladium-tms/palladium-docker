@@ -7,6 +7,7 @@
 * SSL configuration is enabled by default
 * Add backup and restore scripts
 * Add `markdownlint` check in CI
+* Add `shellcheck` check in CI
 
 ### Changes
 
