@@ -8,7 +8,7 @@ DB_CONTAINER_ID=$(docker-compose ps -q db)
 DATE=$(date '+%Y-%m-%d-%H-%M-%S')
 BACKUP_NAME=palladium-backup-$DATE.tar.gz
 echo "Dump database"
-docker exec -it "$DB_CONTAINER_ID" bash -c 'pg_dump -U postgres postgres > /tmp/outfile'
+docker exec -it "$DB_CONTAINER_ID" bash -c 'pg_dump -c -U postgres postgres | gzip > /tmp/outfile'
 echo "Copy backup to host"
 docker cp "$DB_CONTAINER_ID":/tmp/outfile "$BACKUP_NAME"
 echo 'Deleting from container'
