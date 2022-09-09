@@ -5,7 +5,7 @@
 
 CPU_COUNT=4
 DB_CONTAINER_ID=$(docker-compose ps -q db)
-BACKUP_NAME='palladium-backup-2022-09-09-13-25-52.pg_dump'
+BACKUP_NAME=''
 
 aws s3 cp s3://palladium-backup/"$BACKUP_NAME" .
 docker cp "$BACKUP_NAME" "$DB_CONTAINER_ID":/tmp/
