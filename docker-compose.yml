@@ -17,7 +17,7 @@ services:
     restart: always
   api-server:
     build:
-      context: https://github.com/flaminestone/palladium-api.git
+      context: https://github.com/palladium-tms/palladium-api.git
     restart: always
     depends_on:
       - db
@@ -38,7 +38,7 @@ services:
       POSTGRES_HOST_AUTH_METHOD: "trust"
   clientside-build:
     build:
-      context: https://github.com/flaminestone/palladium-view.git
+      context: https://github.com/palladium-tms/palladium-view.git
     volumes:
       - ./dist/:/palladium-view/host_dist
 volumes:
