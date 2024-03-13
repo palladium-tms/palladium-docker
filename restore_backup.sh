@@ -1,5 +1,10 @@
 #!/bin/bash
 
+echo 'The script restores the default state of the \
+     public schema, which will delete all data'
+
+source lib/survey.sh
+
 # Correctly configure aws cli before running this script
 # `aws configure`
 
