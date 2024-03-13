@@ -1,16 +1,31 @@
 #!/bin/bash
 
-echo 'The script restores the default state of the \
-     public schema, which will delete all data'
-
-source lib/survey.sh
-
 # Correctly configure aws cli before running this script
 # `aws configure`
 
 CPU_COUNT=4
 DB_CONTAINER_ID=$(docker-compose ps -q db)
 BACKUP_NAME="${BACKUP_NAME:-unknown-backup}"
+
+
+echo 'The script restores the default state of the' \
+     'public schema, which will delete all data'
+
+while true; do
+
+     echo "Continue? (yes/no) "
+     read -r yn
+
+     case $yn in 
+          yes ) echo 'start of dump recovery';
+               break;;
+          no ) echo 'exiting...';
+               exit 1;;
+          * ) echo 'invalid response';;
+     esac
+
+done
+
 
 # download dump
 aws s3 cp s3://palladium-backup/"$BACKUP_NAME" .
