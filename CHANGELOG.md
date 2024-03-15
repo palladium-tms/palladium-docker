@@ -4,6 +4,7 @@
 
 ### New Features
 
+* [fix] restore_backup.sh restores the default public scheme
 * SSL configuration is enabled by default
 * Add backup and restore scripts
 * Add `markdownlint` check in CI
